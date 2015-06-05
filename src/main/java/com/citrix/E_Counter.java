@@ -1,27 +1,15 @@
 package com.citrix;
 
+import com.citrix.util.Counter;
+
 import static com.citrix.util.Log.log;
 
 public class E_Counter {
 
-    private int n;
-
-    public void increment() {
-        n++;
-    }
-
-    public void decrement() {
-        n--;
-    }
-
-    public int get() {
-        return n;
-    }
-
     public static void main(String[] args) {
         int numThreads = 2;
 
-        E_Counter counter = new E_Counter();
+        Counter counter = new Counter();
 
         for (int i = 0; i < numThreads; i++) {
             new Thread(() -> {

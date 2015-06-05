@@ -5,13 +5,14 @@ import static com.citrix.util.Log.log;
 public class D_ThreadChain {
 
     public static void main(String[] args) throws Exception {
-        Thread[] threads = new Thread[10];
-        for (int i=0; i<threads.length; i++) {
-            int index = i;
-            threads[i] = new Thread(() -> {
-                if(index > 0) {
+        Thread thread = null;
+        for (int i=0; i<10; i++) {
+            Thread last = thread;
+
+            thread = new Thread(() -> {
+                if(last != null) {
                     log("waiting for previous...");
-                    try { threads[index-1].join(); } catch (InterruptedException ignore) {}
+                    try { last.join(); } catch (InterruptedException ignore) {}
                     log("done waiting");
                 }
 
@@ -20,7 +21,7 @@ public class D_ThreadChain {
                 log("done sleeping");
             });
 
-            threads[i].start();
+            thread.start();
         }
     }
 

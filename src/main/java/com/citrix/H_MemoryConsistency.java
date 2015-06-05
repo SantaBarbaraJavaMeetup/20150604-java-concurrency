@@ -1,6 +1,6 @@
 package com.citrix;
 
-public class G_MemoryConsistency {
+public class H_MemoryConsistency {
 
     private static int a;
     private static int b;
